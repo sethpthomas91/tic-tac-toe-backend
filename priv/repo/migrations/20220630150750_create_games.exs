@@ -1,10 +1,10 @@
 defmodule TicTacToeBackend.Repo.Migrations.CreateGames do
   use Ecto.Migration
-
   def change do
     create table(:games) do
       add :available_moves, {:array, :integer}
-      add :win, :boolean, default: false, null: false
+      add :won, :boolean, default: false, null: false
+      add :tied, :boolean, default: false, null: false
       add :winner, :integer
       add :player_1_moves, {:array, :integer}
       add :player_2_moves, {:array, :integer}

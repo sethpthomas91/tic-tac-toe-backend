@@ -25,8 +25,18 @@ defmodule TicTacToeBackendWeb.GameController do
     render(conn, "show.json", game: game)
   end
 
-  def update(conn, %{"id" => id, "game" => game_params}) do
+  def update(conn, %{"id" => id, "move" => move}) do
+    # do logic on the game
     game = Games.get_game!(id)
+
+    IO.inspect("EDIT GAME BELOW")
+    stripped_game = Map.drop(game, [:inserted_at, :__meta__, :__struct__, :updated_at])
+    # handle move
+    # check for win
+    # check for tie
+
+    game_params = stripped_game
+    IO.inspect("EDIT GAME ABOVE")
 
     with {:ok, %Game{} = game} <- Games.update_game(game, game_params) do
       render(conn, "show.json", game: game)
