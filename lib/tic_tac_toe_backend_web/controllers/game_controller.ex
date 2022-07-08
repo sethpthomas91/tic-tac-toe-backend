@@ -29,11 +29,11 @@ defmodule TicTacToeBackendWeb.GameController do
 
   def update(conn, %{"id" => id, "move" => move}) do
     game = GameData.get_game!(id)
-    stripped_game = Map.drop(game, [:__meta__, :__struct__, :inserted_at, :updated_at])
-    game_after_move = GameLogic.handle_move(move, stripped_game)
-    game_after_win_check = GameLogic.check_for_win(game_after_move)
-    game_after_player_change =  GameLogic.change_player(game_after_win_check)
-    new_game_data = game_after_player_change
+
+    new_game_data =
+      GameLogic.convert_schema_to_map(game)
+      |> GameLogic.handle_game_logic(move)
+
     with {:ok, %Game{} = game} <- GameData.update_game(game, new_game_data) do
       render(conn, "show.json", game: game)
     end

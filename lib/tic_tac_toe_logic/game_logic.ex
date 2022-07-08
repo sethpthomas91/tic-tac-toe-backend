@@ -29,6 +29,22 @@ defmodule GameLogic do
     }
   }
 
+  def convert_schema_to_map(game) do
+    Map.drop(game, [:__meta__, :__struct__, :inserted_at, :updated_at])
+  end
+
+  def handle_game_logic(game, move) do
+    if (game[:tied] || game[:won]) do
+      game
+    else
+      new_game_data =
+        handle_move(move, game)
+        |> check_for_win()
+        |> check_for_tie()
+        |> change_player()
+    end
+  end
+
   def new, do: @new_game
 
   def won(game), do: game[:won]
@@ -39,6 +55,15 @@ defmodule GameLogic do
 
   def assign_game_win(false, game), do: game
   def assign_game_win(won, game), do: %{game | won: won, winner: game.current_player}
+
+
+  def check_for_tie(game) do
+    if (length(get_available_moves(game)) == 0 && !won(game)) do
+      %{game | tied: true}
+    else
+      game
+    end
+  end
 
   def check_for_win(game) do
     won =
