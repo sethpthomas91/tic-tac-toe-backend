@@ -23,11 +23,8 @@ config :tic_tac_toe_backend, TicTacToeBackendWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "1XQ4qI87OSPFyle89uG5qh4sJNZwsR7LYjuT/XXSlYdyvSGVjsKkEHlEqLO0IDIo",
-  watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
-  ]
+  secret_key_base: "04CCpBvgQsiPdhHFTUxgrcmls/WBeNggdChinBgSbze71hSBfJBbhpqq436NdTuS",
+  watchers: []
 
 # ## SSL Support
 #
@@ -52,17 +49,6 @@ config :tic_tac_toe_backend, TicTacToeBackendWeb.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
-
-# Watch static and templates for browser reloading.
-config :tic_tac_toe_backend, TicTacToeBackendWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/tic_tac_toe_backend_web/(live|views)/.*(ex)$",
-      ~r"lib/tic_tac_toe_backend_web/templates/.*(eex)$"
-    ]
-  ]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

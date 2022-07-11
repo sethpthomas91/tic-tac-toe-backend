@@ -7,7 +7,7 @@ defmodule TicTacToeBackendWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_tic_tac_toe_backend_key",
-    signing_salt: "R+3Z4IaX"
+    signing_salt: "2NQ8q+Km"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -25,8 +25,6 @@ defmodule TicTacToeBackendWeb.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
-    plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
     plug Phoenix.Ecto.CheckRepoStatus, otp_app: :tic_tac_toe_backend
   end

@@ -7,7 +7,7 @@ import Config
 # Run `mix help test` for more information.
 config :tic_tac_toe_backend, TicTacToeBackend.Repo,
   username: "postgres",
-  password: "myPassword",
+  password: "postgres",
   hostname: "localhost",
   database: "tic_tac_toe_backend_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
@@ -16,8 +16,8 @@ config :tic_tac_toe_backend, TicTacToeBackend.Repo,
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :tic_tac_toe_backend, TicTacToeBackendWeb.Endpoint,
-  http: [ip: {0, 0, 0, 0}, port: 4002],
-  secret_key_base: "puKNAirCmkeMK48GcZ/buvlzZ4SM8JcDq3MQFB2FyJg5zmabXPQCXgLeNRHZEhqU",
+  http: [ip: {127, 0, 0, 1}, port: 4002],
+  secret_key_base: "YajKhpyovYS4hLdT665dM15q+H6R5vmydg9hDhyeFQpFf/qurEFaAUto/FThuQd+",
   server: false
 
 # In test we don't send emails.

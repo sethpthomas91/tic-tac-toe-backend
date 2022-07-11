@@ -1,30 +1,14 @@
 defmodule TicTacToeBackendWeb.Router do
   use TicTacToeBackendWeb, :router
 
-  pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_live_flash
-    plug :put_root_layout, {TicTacToeBackendWeb.LayoutView, :root}
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-  end
-
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/", TicTacToeBackendWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
-  # Other scopes may use custom stacks.
   scope "/api", TicTacToeBackendWeb do
     pipe_through :api
 
-    resources "/games", GameController, except: [:new, :edit]
+    post "/users", UserController, :register
   end
 
   # Enables LiveDashboard only for development
@@ -38,7 +22,7 @@ defmodule TicTacToeBackendWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through :browser
+      pipe_through [:fetch_session, :protect_from_forgery]
 
       live_dashboard "/dashboard", metrics: TicTacToeBackendWeb.Telemetry
     end
@@ -50,7 +34,7 @@ defmodule TicTacToeBackendWeb.Router do
   # node running the Phoenix server.
   if Mix.env() == :dev do
     scope "/dev" do
-      pipe_through :browser
+      pipe_through [:fetch_session, :protect_from_forgery]
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
