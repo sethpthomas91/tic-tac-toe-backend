@@ -14,6 +14,10 @@ defmodule TicTacToeBackendWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug TicTacToeBackend.Guardian.AuthPipeline
+  end
+
   scope "/", TicTacToeBackendWeb do
     pipe_through :browser
 
@@ -25,8 +29,16 @@ defmodule TicTacToeBackendWeb.Router do
     pipe_through :api
 
     post "/users", UserController, :register
+    post "/session/new", SessionController, :new
+
+  end
+
+  scope "/api", TicTacToeBackendWeb do
+    pipe_through [:api, :auth]
 
     resources "/games", GameController, except: [:new, :edit]
+    post "/session/refresh", SessionController, :refresh
+    post "/session/delete", SessionController, :delete
   end
 
   # Enables LiveDashboard only for development
