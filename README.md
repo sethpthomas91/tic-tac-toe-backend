@@ -8,7 +8,7 @@ This is a Tic-Tac-Toe backend made for my 8th Light apprenticeship. It focuses o
 <!-- BUILD STATUS -->
 ## Current Project Status
 
-INSERT STATUS BADGE HERE
+[![Backend Tests](https://github.com/sethpthomas91/tic-tac-toe-backend/actions/workflows/main.yml/badge.svg)](https://github.com/sethpthomas91/tic-tac-toe-backend/actions/workflows/main.yml)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
