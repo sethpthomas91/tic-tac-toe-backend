@@ -24,6 +24,8 @@ defmodule TicTacToeBackendWeb.Router do
   scope "/api", TicTacToeBackendWeb do
     pipe_through :api
 
+    post "/users", UserController, :register
+
     resources "/games", GameController, except: [:new, :edit]
   end
 
