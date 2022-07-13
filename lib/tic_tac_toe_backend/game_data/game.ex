@@ -17,6 +17,7 @@ defmodule TicTacToeBackend.GameData.Game do
     field :tied, :boolean, default: false
     field :winner, :integer
     field :won, :boolean, default: false
+    belongs_to :user, TicTacToeBackend.Accounts.User
 
     timestamps()
   end

@@ -5,6 +5,7 @@ defmodule TicTacToeBackend.Accounts.User do
   schema "users" do
     field :email, :string
     field :password, :string
+    has_many :games, TicTacToeBackend.GameData.Game
 
     timestamps()
   end
