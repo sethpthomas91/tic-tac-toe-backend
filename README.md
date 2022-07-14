@@ -8,7 +8,7 @@ This is a Tic-Tac-Toe backend made for my 8th Light apprenticeship. It focuses o
 <!-- BUILD STATUS -->
 ## Current Project Status
 
-INSERT STATUS BADGE HERE
+[![Backend Tests](https://github.com/sethpthomas91/tic-tac-toe-backend/actions/workflows/main.yml/badge.svg)](https://github.com/sethpthomas91/tic-tac-toe-backend/actions/workflows/main.yml)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -19,10 +19,11 @@ INSERT STATUS BADGE HERE
 
 ### Prerequisites
 
-In order to run this project you will need to install Elixir and Pheonix.
+In order to run this project you will need to install Elixir, Pheonix, and PostgreSQL.
 ```sh
 Elixir 1.12
 Pheonix 1.6.10
+PostgreSQL 14.4
 ```
 
 
@@ -30,7 +31,7 @@ Pheonix 1.6.10
 
 1 Clone the repo
    ```sh
-git clone 
+git clone git@github.com:sethpthomas91/tic-tac-toe-backend.git
    ```
 
 2 Install dependencies 
@@ -38,11 +39,20 @@ git clone
 mix deps.get 
    ```
 
-3 Create and migrate your database with ``
+3 Create and migrate your database with
    ```sh
 mix ecto.setup
    ```
 
+Note:: If you run into any issues with the database try running
+   ```sh
+mix ecto.reset
+   ```
+This should reset and remigrate your database if their were any changes from a previous install. You may also have to reconfigure the following two files with your local settings for PostgreSQL
+   ```sh
+*/tic-tac-toe-backend/config/config.exs
+*tic-tac-toe-backend/config/dev.exs
+   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Starting the Server
